@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# environments
+environments.ts
+upload-form.service.ts
+upload-form.service.spec.ts
