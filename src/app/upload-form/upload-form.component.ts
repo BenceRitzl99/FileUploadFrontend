@@ -8,7 +8,7 @@ import { UploadService } from '../upload.service';
 })
 export class UploadFormComponent {
 
-  selectedFiles?: FileList
+  selectedFiles?: any
   currentFileUpload=false
   percentage=0
 
@@ -17,7 +17,7 @@ export class UploadFormComponent {
 
   selectFiles(event: any) {
     console.log(event.target.files)
-    this.selectedFiles = event.target.files[0]
+    this.selectedFiles = event.target.files
     this.percentage=0
     this.currentFileUpload=false
     
@@ -27,13 +27,15 @@ export class UploadFormComponent {
     console.log("upload")
     console.log(this.selectedFiles)
     this.currentFileUpload=true
-    this.uploadFile.uploadFile(this.selectedFiles).subscribe(
-      (percentage: any) => 
+
+    for (const file of this.selectedFiles) {
+      this.uploadFile.uploadFile(file).subscribe(
+        (percentage: any) =>
         {this.percentage=Math.round(percentage?percentage:0)
         console.log(this.percentage)
       }
     )
 
   }
-
+  }
 }
